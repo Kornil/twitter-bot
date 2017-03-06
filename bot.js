@@ -9,7 +9,7 @@ var Twitter = new twit(config);
 // find a random tweet and 'favorite' it
 var favoriteTweet = function(){
   var params = {
-      q: '#100DaysOfCode',  // REQUIRED
+      q: '100DaysOfCode, 301DaysOfCode',  // REQUIRED
       result_type: 'recent',
       lang: 'en'
   }
