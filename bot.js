@@ -28,7 +28,7 @@ var favoriteTweet = () => {
       Twitter.post('favorites/create', {id: randomTweet.id_str}, (err, response) => {
         // if there was an error while 'favorite'
         if(err){
-          console.log(err);
+          console.log(`Something went wrong: ${err}`);
         }
         else{
           console.log('Tweet liked!');
