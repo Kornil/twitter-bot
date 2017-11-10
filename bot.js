@@ -7,7 +7,7 @@ var Twitter = new twit(config);
 // FAVORITE BOT====================
 
 // find a random tweet and 'favorite' it
-var favoriteTweet = function(){
+var favoriteTweet = () => {
   var params = {
       q: '100DaysOfCode, 100daysofcode',  // REQUIRED
       result_type: 'recent',
@@ -16,7 +16,7 @@ var favoriteTweet = function(){
   // for more parametes, see: https://dev.twitter.com/rest/reference
 
   // find the tweet
-  Twitter.get('search/tweets', params, function(err,data){
+  Twitter.get('search/tweets', params, (err,data) => {
 
     // find tweets
     var tweet = data.statuses;
@@ -25,13 +25,13 @@ var favoriteTweet = function(){
     // if random tweet exists
     if(typeof randomTweet != 'undefined'){
       // Tell TWITTER to 'favorite'
-      Twitter.post('favorites/create', {id: randomTweet.id_str}, function(err, response){
+      Twitter.post('favorites/create', {id: randomTweet.id_str}, (err, response) => {
         // if there was an error while 'favorite'
         if(err){
-          console.log('CANNOT BE FAVORITE... Error');
+          console.log(`Error: ${err}`);
         }
         else{
-          console.log('FAVORITED... Success!!!');
+          console.log('Tweet liked!');
         }
       });
     }
@@ -39,11 +39,9 @@ var favoriteTweet = function(){
 }
 // grab & 'favorite' as soon as program is running...
 favoriteTweet();
-// 'favorite' a tweet in every 2.5 minutes
+// 'favorite' a tweet every 2.5 minutes
 setInterval(favoriteTweet, 1000 * (60 * 2.5));
 
-// function to generate a random tweet tweet
-function ranDom (arr) {
-  var index = Math.floor(Math.random()*arr.length);
-  return arr[index];
-};
+// generate a random tweet tweet
+const ranDom = (arr) => arr[Math.floor(Math.random()*arr.length)];
+
